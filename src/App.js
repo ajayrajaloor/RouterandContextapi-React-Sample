@@ -7,9 +7,9 @@ import {  Route, Routes,Link, useNavigate} from "react-router-dom"; //Route to d
 
 
 function App() {
-  const [state, setState] = useState("");
+  // const [state, setState] = useState(""); ..5..  for the work of usecontext we need to pass a value ↓
+  const [state,setState] = useState(10) //pass it to the state to know the working of usecontext but now we see with the help of props
   const navigate = useNavigate()
-
   // let component;
   // if(state === 'about') {
   //   component =   <About></About>
@@ -38,10 +38,11 @@ function App() {
       <button onClick={() => navigate('/profile')} >Profile</button>
 
         <Routes> {/* it is a container which is a must use container to wrap the all Route  */}
-          <Route Component={About} path='/about' />
+          <Route Component={About} path='/about' />  {/* instead of writing it in this we can also write in another way ↓↓ */}
           {/* here we first try to get the About component while typing the path as endpoint write inside the Route... we can also write in another way */}
-          <Route Component={Profile} path="/profile"/> 
-          <Route render/>
+         
+          <Route path="/profile" element={<Profile data={state}/>} />
+          
         </Routes>
 
 
